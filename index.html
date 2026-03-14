@@ -1,187 +1,224 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>100 Reasons Why I Love You 💙</title>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>100 Reasons Why I Love You 💙</title>
 
-    <style>
-      body {
-        margin: 0;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: Arial, sans-serif;
-        text-align: center;
-        color: white;
-        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-        overflow: hidden;
-      }
+<style>
 
-      .container {
-        background: rgba(0, 0, 0, 0.55);
-        padding: 40px;
-        border-radius: 20px;
-        width: 90%;
-        max-width: 500px;
-      }
+body{
+margin:0;
+font-family:Arial;
+color:white;
+text-align:center;
+overflow:hidden;
+}
 
-      h1 {
-        color: #8ed6ff;
-      }
+#bg{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-2;
+}
 
-      button {
-        padding: 12px 25px;
-        font-size: 18px;
-        border: none;
-        border-radius: 10px;
-        background: #1e90ff;
-        color: white;
-        cursor: pointer;
-        margin-top: 20px;
-      }
+.overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,40,80,0.6);
+z-index:-1;
+}
 
-      button:hover {
-        background: #0c7cd5;
-      }
+.container{
+margin-top:120px;
+padding:30px;
+}
 
-      #reason {
-        margin-top: 20px;
-        font-size: 22px;
-        min-height: 60px;
-      }
+button{
+padding:14px 28px;
+font-size:18px;
+border:none;
+border-radius:10px;
+background:#1e90ff;
+color:white;
+cursor:pointer;
+}
 
-      .counter {
-        margin-top: 10px;
-        opacity: 0.8;
-      }
+button:hover{
+background:#0c7cd5;
+}
 
-      .heart {
-        position: absolute;
-        color: #6ec6ff;
-        font-size: 20px;
-        animation: float 6s linear infinite;
-      }
+#reason{
+font-size:22px;
+margin-top:25px;
+min-height:60px;
+}
 
-      @keyframes float {
-        0% {
-          transform: translateY(100vh);
-          opacity: 0;
-        }
-        50% {
-          opacity: 1;
-        }
-        100% {
-          transform: translateY(-10vh);
-          opacity: 0;
-        }
-      }
-    </style>
-  </head>
+.heart{
+position:absolute;
+color:#7ecbff;
+animation:float 6s linear infinite;
+}
 
-  <body>
-    <div class="container">
-      <h1>100 Reasons Why I Love You 💙</h1>
+@keyframes float{
+0%{transform:translateY(100vh);opacity:0}
+50%{opacity:1}
+100%{transform:translateY(-10vh);opacity:0}
+}
 
-      <button onclick="showReason()">Click for a reason</button>
+#surprise{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+justify-content:center;
+align-items:center;
+flex-direction:column;
+}
 
-      <p id="reason"></p>
+</style>
+</head>
 
-      <div class="counter">Reasons seen: <span id="count">0</span></div>
-    </div>
+<body>
 
-    <audio autoplay loop>
-      <source src="music.mp3" type="audio/mpeg" />
-    </audio>
+<img src="photo.jpeg" id="bg">
+<div class="overlay"></div>
 
-    <script>
-      let clicks = 0;
+<div class="container" id="main">
 
-      const reasons = [
-        "Because your smile fixes my worst days.",
-        "Because you laugh at my dumb jokes.",
-        "Because life feels easier with you.",
-        "Because you understand me.",
-        "Because your hugs feel like home.",
-        "Because you're beautiful inside and out.",
-        "Because you support my dreams.",
-        "Because you make me want to be better.",
-        "Because every moment with you matters.",
-        "Because you make ordinary days special.",
-        "Because your voice calms me.",
-        "Because you care about the little things.",
-        "Because you believe in me.",
-        "Because you brighten my darkest days.",
-        "Because you’re my safe place.",
-        "Because you inspire me.",
-        "Because you make my world happier.",
-        "Because you listen to me.",
-        "Because your laugh is contagious.",
-        "Because you make my heart feel full.",
-        "Because you're kind to everyone.",
-        "Because you bring peace to my mind.",
-        "Because you make my life exciting.",
-        "Because you make me smile without trying.",
-        "Because you’re my favorite person.",
-        "Because you understand my silence.",
-        "Because you make memories beautiful.",
-        "Because you make every place feel like home.",
-        "Because you are thoughtful.",
-        "Because you are genuine.",
-        "Because you are caring.",
-        "Because you make life feel magical.",
-        "Because you support me when I need it.",
-        "Because you are strong.",
-        "Because you are gentle.",
-        "Because you make me laugh even on bad days.",
-        "Because you are patient.",
-        "Because you always try to understand me.",
-        "Because you are special.",
-        "Because you make my heart race.",
-        "Because you’re my happiness.",
-        "Because you make love feel easy.",
-        "Because you're amazing.",
-        "Because you inspire kindness.",
-        "Because you make the future exciting.",
-        "Because you trust me.",
-        "Because you are my best friend.",
-        "Because you make everything brighter.",
-        "Because your presence is comforting.",
-        "Because you make life beautiful.",
+<h1>💙 100 Reasons Why I Love You</h1>
 
-        "Because you're you. 💙",
-      ];
+<button onclick="showReason()">Click for a reason</button>
 
-      function showReason() {
-        const random = reasons[Math.floor(Math.random() * reasons.length)];
+<p id="reason"></p>
 
-        document.getElementById("reason").innerText = random;
+</div>
 
-        clicks++;
-        document.getElementById("count").innerText = clicks;
+<div id="surprise">
 
-        if (clicks === 10) {
-          alert(
-            "Final reason: Because I love you more than words can explain 💙",
-          );
-        }
-      }
+<h1>💙 Final Reason</h1>
 
-      function createHeart() {
-        const heart = document.createElement("div");
-        heart.className = "heart";
-        heart.innerHTML = "💙";
+<h2>
+Because you are the best thing that ever happened to me.
+<br><br>
+I’m so lucky to have you in my life.
+<br><br>
+I love you 💙
+</h2>
 
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.fontSize = Math.random() * 20 + 10 + "px";
-        heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+</div>
 
-        document.body.appendChild(heart);
+<audio id="music" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
 
-        setTimeout(() => heart.remove(), 6000);
-      }
+<script>
 
-      setInterval(createHeart, 500);
-    </script>
-  </body>
+let started=false
+let clicks=0
+
+const reasons=[
+
+"Because your smile fixes my worst days",
+"Because your laugh makes everything better",
+"Because you believe in me",
+"Because your hugs feel like home",
+"Because you understand me",
+"Because you make ordinary days special",
+"Because you inspire me",
+"Because you are kind",
+"Because you are beautiful inside and out",
+"Because you care about people",
+"Because you support my dreams",
+"Because you make life exciting",
+"Because you brighten my darkest days",
+"Because you make me laugh",
+"Because you are thoughtful",
+"Because you listen to me",
+"Because you make memories unforgettable",
+"Because you make my heart calm",
+"Because you make everything feel easier",
+"Because you make my world brighter",
+"Because you are genuine",
+"Because you are patient",
+"Because you make love feel simple",
+"Because you are my safe place",
+"Because you inspire me to be better",
+"Because you make me happy",
+"Because you make every moment meaningful",
+"Because you are caring",
+"Because you always try to understand",
+"Because you make life beautiful",
+"Because you are my best friend",
+"Because you are strong",
+"Because you make my heart race",
+"Because you make the future exciting",
+"Because you bring peace to my mind",
+"Because you make every place feel like home",
+"Because you make me feel lucky",
+"Because you make my life better",
+"Because you are amazing",
+"Because you make me smile without trying",
+"Because you are unique",
+"Because you are warm-hearted",
+"Because you are thoughtful",
+"Because you inspire kindness",
+"Because you are supportive",
+"Because you make my world complete",
+"Because you make me believe in love",
+"Because you make life worth sharing",
+"Because you are special",
+"Because you are you 💙"
+
+]
+
+function showReason(){
+
+if(!started){
+document.getElementById("music").play()
+started=true
+}
+
+const random=reasons[Math.floor(Math.random()*reasons.length)]
+
+document.getElementById("reason").innerText=random
+
+clicks++
+
+if(clicks>=20){
+document.getElementById("main").style.display="none"
+document.getElementById("surprise").style.display="flex"
+}
+
+}
+
+function heart(){
+
+const h=document.createElement("div")
+h.className="heart"
+h.innerHTML="💙"
+
+h.style.left=Math.random()*100+"vw"
+h.style.fontSize=(Math.random()*20+10)+"px"
+h.style.animationDuration=(Math.random()*3+3)+"s"
+
+document.body.appendChild(h)
+
+setTimeout(()=>{h.remove()},6000)
+
+}
+
+setInterval(heart,500)
+
+</script>
+
+</body>
 </html>
