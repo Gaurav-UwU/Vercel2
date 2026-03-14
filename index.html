@@ -9,8 +9,8 @@
 body{
 margin:0;
 font-family:Arial;
-color:white;
 text-align:center;
+color:white;
 overflow:hidden;
 }
 
@@ -26,17 +26,14 @@ z-index:-2;
 
 .overlay{
 position:fixed;
-top:0;
-left:0;
 width:100%;
 height:100%;
-background:rgba(0,40,80,0.6);
+background:rgba(0,40,80,0.65);
 z-index:-1;
 }
 
 .container{
 margin-top:120px;
-padding:30px;
 }
 
 button{
@@ -59,6 +56,11 @@ margin-top:25px;
 min-height:60px;
 }
 
+.counter{
+margin-top:10px;
+opacity:0.8;
+}
+
 .heart{
 position:absolute;
 color:#7ecbff;
@@ -71,7 +73,16 @@ animation:float 6s linear infinite;
 100%{transform:translateY(-10vh);opacity:0}
 }
 
-#surprise{
+#game{
+display:none;
+margin-top:150px;
+}
+
+#noBtn{
+position:absolute;
+}
+
+#final{
 display:none;
 position:fixed;
 top:0;
@@ -82,6 +93,7 @@ background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
 justify-content:center;
 align-items:center;
 flex-direction:column;
+font-size:26px;
 }
 
 </style>
@@ -92,7 +104,7 @@ flex-direction:column;
 <img src="photo.jpeg" id="bg">
 <div class="overlay"></div>
 
-<div class="container" id="main">
+<div id="main" class="container">
 
 <h1>💙 100 Reasons Why I Love You</h1>
 
@@ -100,19 +112,30 @@ flex-direction:column;
 
 <p id="reason"></p>
 
+<div class="counter">
+Clicks: <span id="count">0</span>/100
 </div>
 
-<div id="surprise">
+</div>
 
-<h1>💙 Final Reason</h1>
+<div id="game">
 
-<h2>
-Because you are the best thing that ever happened to me.
-<br><br>
-I’m so lucky to have you in my life.
-<br><br>
+<h1>Do you love me? 💙</h1>
+
+<button onclick="yesClicked()">YES 💙</button>
+<button id="noBtn">NO</button>
+
+</div>
+
+<div id="final">
+
+<h1>💙 I knew it! 💙</h1>
+
+<p>
+You are the best thing that ever happened to me.<br><br>
+I’m so lucky to have you in my life.<br><br>
 I love you 💙
-</h2>
+</p>
 
 </div>
 
@@ -127,55 +150,96 @@ let clicks=0
 
 const reasons=[
 
-"Because your smile fixes my worst days",
-"Because your laugh makes everything better",
-"Because you believe in me",
-"Because your hugs feel like home",
+"Because your smile makes my day better",
+"Because your laugh is my favorite sound",
 "Because you understand me",
+"Because your hugs feel like home",
 "Because you make ordinary days special",
-"Because you inspire me",
-"Because you are kind",
-"Because you are beautiful inside and out",
-"Because you care about people",
+"Because you believe in me",
+"Because you inspire me to improve",
+"Because you are kind to everyone",
+"Because you listen to me",
+"Because you make me laugh",
 "Because you support my dreams",
 "Because you make life exciting",
 "Because you brighten my darkest days",
-"Because you make me laugh",
+"Because you make memories beautiful",
 "Because you are thoughtful",
-"Because you listen to me",
-"Because you make memories unforgettable",
-"Because you make my heart calm",
-"Because you make everything feel easier",
+"Because you care about the little things",
+"Because you always try to understand",
+"Because you make me feel lucky",
 "Because you make my world brighter",
+"Because you are my best friend",
+"Because you make everything better",
+"Because you make me smile without trying",
 "Because you are genuine",
 "Because you are patient",
-"Because you make love feel simple",
-"Because you are my safe place",
-"Because you inspire me to be better",
-"Because you make me happy",
-"Because you make every moment meaningful",
+"Because you make me feel loved",
 "Because you are caring",
-"Because you always try to understand",
+"Because you inspire kindness",
 "Because you make life beautiful",
-"Because you are my best friend",
-"Because you are strong",
-"Because you make my heart race",
-"Because you make the future exciting",
+"Because you help me grow",
+"Because you make my heart calm",
+"Because you are supportive",
+"Because you make me proud",
+"Because you make every moment meaningful",
+"Because you always encourage me",
+"Because you make life fun",
 "Because you bring peace to my mind",
 "Because you make every place feel like home",
-"Because you make me feel lucky",
-"Because you make my life better",
-"Because you are amazing",
-"Because you make me smile without trying",
-"Because you are unique",
+"Because you make me feel understood",
+"Because you make my life brighter",
+"Because you make the future exciting",
+"Because you always know how to cheer me up",
+"Because you make me feel safe",
+"Because you bring joy into my life",
+"Because you make me feel appreciated",
+"Because you make life magical",
 "Because you are warm-hearted",
-"Because you are thoughtful",
-"Because you inspire kindness",
-"Because you are supportive",
-"Because you make my world complete",
+"Because you are amazing",
 "Because you make me believe in love",
 "Because you make life worth sharing",
 "Because you are special",
+
+"Because your voice comforts me",
+"Because you care deeply",
+"Because you make small moments special",
+"Because you are always honest",
+"Because you make me feel calm",
+"Because you are full of positivity",
+"Because you inspire me every day",
+"Because you make everything brighter",
+"Because you make life meaningful",
+"Because you are thoughtful in small ways",
+"Because you always try your best",
+"Because you bring light into my life",
+"Because you make my heart full",
+"Because you make life exciting",
+"Because you help me stay strong",
+"Because you make the world better",
+"Because you make my days happier",
+"Because you always listen patiently",
+"Because you give me comfort",
+"Because you are compassionate",
+"Because you make love feel real",
+"Because you make everything feel easier",
+"Because you are supportive",
+"Because you make me feel important",
+"Because you make my life complete",
+"Because you make every day brighter",
+"Because you make my heart race",
+"Because you make me feel lucky every day",
+"Because you are unique",
+"Because you make me believe in happiness",
+"Because you bring warmth into my life",
+"Because you always care",
+"Because you make every moment count",
+"Because you make me feel happy",
+"Because you are wonderful",
+"Because you make me smile",
+"Because you make everything feel right",
+"Because you are one of a kind",
+"Because you make my world better",
 "Because you are you 💙"
 
 ]
@@ -193,12 +257,28 @@ document.getElementById("reason").innerText=random
 
 clicks++
 
-if(clicks>=20){
+document.getElementById("count").innerText=clicks
+
+if(clicks>=100){
 document.getElementById("main").style.display="none"
-document.getElementById("surprise").style.display="flex"
+document.getElementById("game").style.display="block"
 }
 
 }
+
+function yesClicked(){
+document.getElementById("game").style.display="none"
+document.getElementById("final").style.display="flex"
+}
+
+const noBtn=document.getElementById("noBtn")
+
+noBtn.addEventListener("mouseover",()=>{
+const x=Math.random()*window.innerWidth
+const y=Math.random()*window.innerHeight
+noBtn.style.left=x+"px"
+noBtn.style.top=y+"px"
+})
 
 function heart(){
 
